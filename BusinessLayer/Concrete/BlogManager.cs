@@ -39,6 +39,11 @@ namespace BusinessLayer.Concrete
             return filter == null ? _blogDal.GetAll() : _blogDal.GetAll(filter);
         }
 
+        public List<Blog> GetListWithCategory(Expression<Func<Blog, bool>> filter = null)
+        {
+           return _blogDal.GetListWithCategory(filter);
+        }
+
         public void Update(Blog blog)
         {
             _blogDal.Update(blog);
