@@ -36,7 +36,7 @@ namespace BusinessLayer.Concrete
 
         public List<About> GetAll(Expression<Func<About, bool>> filter = null)
         {
-            return filter == null ? _aboutDal.GetAll() : _aboutDal.GetAll(filter);
+            return  _aboutDal.GetAll(filter);
         }
 
         public void Update(About about)

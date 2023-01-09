@@ -12,5 +12,6 @@ namespace DataAccessLayer.Abstract
     public interface IBlogDal :IEntityRepository<Blog>
     {
         List<Blog> GetListWithCategory(Expression<Func<Blog, bool>> filter = null);
+        public List<Blog> GetListByCount(Expression<Func<Blog, bool>> filter = null, int count = 1);
     }
 }

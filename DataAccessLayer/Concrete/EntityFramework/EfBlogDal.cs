@@ -21,5 +21,14 @@ namespace DataAccessLayer.Concrete.EntityFramework
                 return blogList;
             }
         }
+
+        public List<Blog> GetListByCount(Expression<Func<Blog, bool>> filter = null, int count = 1)
+        {
+            using (var context = new BlogDBContext())
+            {
+                var blogList = filter == null ? context.Blogs.OrderBy(b => b.BlogCreateDate).Take(count).ToList() : context.Blogs.Where(filter).OrderBy(b => b.BlogCreateDate).Take(count).ToList();
+                return blogList;
+            }
+        }
     }
 }

@@ -36,7 +36,7 @@ namespace BusinessLayer.Concrete
 
         public List<Contact> GetAll(Expression<Func<Contact, bool>> filter = null)
         {
-            return filter == null ? _contactDal.GetAll() : _contactDal.GetAll(filter);
+            return  _contactDal.GetAll(filter);
         }
 
         public void Update(Contact contact)

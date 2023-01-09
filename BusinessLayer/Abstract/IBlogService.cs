@@ -16,5 +16,6 @@ namespace BusinessLayer.Abstract
         void Update(Blog blog);
         void Delete(Blog blog);
         public List<Blog> GetListWithCategory(Expression<Func<Blog, bool>> filter = null);
+        public List<Blog> GetListByCount(Expression<Func<Blog, bool>> filter = null, int count = 1);
     }
 }

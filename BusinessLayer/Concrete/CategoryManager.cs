@@ -36,7 +36,7 @@ namespace BusinessLayer.Concrete
 
         public List<Category> GetAll(Expression<Func<Category, bool>> filter = null)
         {
-            return filter==null?_categoryDal.GetAll():_categoryDal.GetAll(filter);
+            return _categoryDal.GetAll(filter);
         }
 
         public void Update(Category category)

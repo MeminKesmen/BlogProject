@@ -3,9 +3,9 @@ using BusinessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BlogProject.ViewComponents
+namespace BlogProject.ViewComponents.Comment
 {
-    public class CommentList: ViewComponent
+    public class CommentList : ViewComponent
     {
         ICommentService _commentService;
         public CommentList()
@@ -14,7 +14,7 @@ namespace BlogProject.ViewComponents
         }
         public IViewComponentResult Invoke(int id)
         {
-            var comments = _commentService.GetAll(c=>c.BlogId==id);
+            var comments = _commentService.GetAll(c => c.BlogId == id);
             return View(comments);
         }
     }

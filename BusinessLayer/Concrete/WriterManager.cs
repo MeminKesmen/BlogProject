@@ -36,7 +36,7 @@ namespace BusinessLayer.Concrete
 
         public List<Writer> GetAll(Expression<Func<Writer, bool>> filter = null)
         {
-            return filter == null ? _writerDal.GetAll() : _writerDal.GetAll(filter);
+            return _writerDal.GetAll(filter);
         }
 
         public void Update(Writer writer)

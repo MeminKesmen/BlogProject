@@ -38,7 +38,12 @@
                                 <h5 class="card-title">
                                     <a href="/Blog/BlogReadAll/@item.BlogId">@item.BlogTitle</a>
                                 </h5>
-                                <p class="card-text mb-3">@item.BlogContent.Substring(0,item.BlogContent.Substring(0,130).LastIndexOf(" ") )... </p>
+                                <p class="card-text mb-3">
+                                    @if (item.BlogContent.Length > 130)
+                                    {@item.BlogContent.Substring(0, item.BlogContent.Substring(0, 130).LastIndexOf(" "))}
+                                    else { @item.BlogContent }
+                                    ...
+                                </p>
                                 <a href="/Blog/BlogReadAll/@item.BlogId" class="btn btn-primary read-m">Devamını Oku...</a>
                             </div>
                         </div>

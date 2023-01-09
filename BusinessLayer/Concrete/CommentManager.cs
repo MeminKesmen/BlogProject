@@ -36,7 +36,7 @@ namespace BusinessLayer.Concrete
 
         public List<Comment> GetAll(Expression<Func<Comment, bool>> filter = null)
         {
-            return filter == null ? _commentDal.GetAll() : _commentDal.GetAll(filter);
+            return  _commentDal.GetAll(filter);
         }
 
         public void Update(Comment comment)
