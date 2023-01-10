@@ -8,12 +8,8 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface ICategoryService
+    public interface ICategoryService: IGenericService<Category>
     {
-        List<Category> GetAll(Expression<Func<Category, bool>> filter = null);
-        Category Get(Expression<Func<Category, bool>> filter);
-        void Add(Category category);
-        void Update(Category category);
-        void Delete(Category category);
+        int Count(Expression<Func<Category, bool>> filter = null);
     }
 }

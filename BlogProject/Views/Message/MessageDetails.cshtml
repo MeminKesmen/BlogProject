@@ -1,0 +1,14 @@
+﻿@model Message
+@{
+    ViewData["Title"] = "MessageDetails";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<h1>Mesaj Detay</h1>
+<br />
+@Html.Label("Mesaj Başlık")
+@Html.LabelFor(m => m.Subject, new { @class = "form-control" })
+<br />
+@Html.Label("Mesaj İçerik")
+@Html.TextAreaFor(m => m.MessageDetails, new { @class = "form-control",@readonly= "readonly " })
+

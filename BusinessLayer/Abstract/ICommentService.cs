@@ -8,12 +8,8 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface ICommentService
+    public interface ICommentService: IGenericService<Comment>
     {
-        List<Comment> GetAll(Expression<Func<Comment, bool>> filter = null);
-        Comment Get(Expression<Func<Comment, bool>> filter);
-        void Add(Comment comment);
-        void Update(Comment comment);
-        void Delete(Comment comment);
+        
     }
 }

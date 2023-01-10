@@ -1,0 +1,19 @@
+﻿Create Trigger AddBlogInRatingTable
+On Blogs
+After Insert
+As
+Declare @Id int
+Select @Id=BlogId from inserted
+Insert Into BlogRatings (BlogId,BlogTotalScore,BlogRatingCount)
+Values(@Id,0,0)
+
+Create Trigger AddScoreInComment
+on Comments
+After Insert
+As
+Declare @Id int
+Declare @Score int
+Declare @RatingCount int
+Select @Id=BlogId,@Score=BlogScore from inserted
+Update BlogRatings Set BlogTotalScore=BlogTotalScore+@Score,BlogRatingCount+=1
+Where BlogId=@Id

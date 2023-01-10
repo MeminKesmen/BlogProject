@@ -8,12 +8,8 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface IAboutService
+    public interface IAboutService: IGenericService<About>
     {
-        List<About> GetAll(Expression<Func<About, bool>> filter = null);
-        About Get(Expression<Func<About, bool>> filter);
-        void Add(About about);
-        void Update(About about);
-        void Delete(About about);
+      
     }
 }

@@ -24,6 +24,11 @@ namespace BusinessLayer.Concrete
             _categoryDal.Add(category);
         }
 
+        public int Count(Expression<Func<Category, bool>> filter = null)
+        {
+            return _categoryDal.Count(filter);
+        }
+
         public void Delete(Category category)
         {
             _categoryDal.Delete(category);

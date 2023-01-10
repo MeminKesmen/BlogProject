@@ -60,7 +60,8 @@
                     <div class="tech-btm">
                         <img src="images/banner1.jpg" class="img-fluid" alt="">
                     </div>
-                    @await Html.PartialAsync("~/Views/SubscribeMail.cshtml") 
+                    <h4>Mail bülteni abone ol!</h4>
+                    @await Html.PartialAsync("~/Views/NewLetter/SubscribeMail.cshtml")
                     @await Component.InvokeAsync("CategoryList")
                     @await Component.InvokeAsync("WriterLastBlog", new { id = Model.WriterId })
                     <div class="single-gd my-5 tech-btm">

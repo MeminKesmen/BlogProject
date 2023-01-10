@@ -24,6 +24,11 @@ namespace BusinessLayer.Concrete
             _blogDal.Add(blog);
         }
 
+        public int Count(Expression<Func<Blog, bool>> filter = null)
+        {
+            return _blogDal.Count(filter);
+        }
+
         public void Delete(Blog blog)
         {
             _blogDal.Delete(blog);
@@ -44,9 +49,9 @@ namespace BusinessLayer.Concrete
             return _blogDal.GetListByCount(filter,count);
         }
 
-        public List<Blog> GetListWithCategory(Expression<Func<Blog, bool>> filter = null)
+        public List<Blog> GetListWithCategory(Expression<Func<Blog, bool>> filter = null, int count = 0)
         {
-           return _blogDal.GetListWithCategory(filter);
+           return _blogDal.GetListWithCategory(filter,count);
         }
 
         public void Update(Blog blog)

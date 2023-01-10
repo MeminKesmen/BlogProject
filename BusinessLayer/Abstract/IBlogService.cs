@@ -8,14 +8,11 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface IBlogService
+    public interface IBlogService : IGenericService<Blog>
     {
-        List<Blog> GetAll(Expression<Func<Blog, bool>> filter = null);
-        Blog Get(Expression<Func<Blog, bool>> filter);
-        void Add(Blog blog);
-        void Update(Blog blog);
-        void Delete(Blog blog);
-        public List<Blog> GetListWithCategory(Expression<Func<Blog, bool>> filter = null);
-        public List<Blog> GetListByCount(Expression<Func<Blog, bool>> filter = null, int count = 1);
+
+        List<Blog> GetListWithCategory(Expression<Func<Blog, bool>> filter = null, int count = 0);
+        List<Blog> GetListByCount(Expression<Func<Blog, bool>> filter = null, int count = 1);
+        int Count(Expression<Func<Blog, bool>> filter = null);
     }
 }

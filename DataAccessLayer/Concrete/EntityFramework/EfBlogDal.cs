@@ -13,11 +13,35 @@ namespace DataAccessLayer.Concrete.EntityFramework
 {
     public class EfBlogDal : EfEntityRepositoryBase<Blog, BlogDBContext>, IBlogDal
     {
-        public List<Blog> GetListWithCategory(Expression<Func<Blog, bool>> filter = null)
+        public List<Blog> GetListWithCategory(Expression<Func<Blog, bool>> filter = null,int count=0)
         {
             using (var context = new BlogDBContext())
             {
-                var blogList = filter == null ? context.Blogs.Include(b => b.Category).ToList() : context.Blogs.Include(b => b.Category).Where(filter).ToList();
+                var query = context.Blogs.Include(b => b.Category);
+                List<Blog> blogList;
+                if (filter==null) 
+                {
+                    if (count==0) 
+                    {
+                        blogList= query.OrderByDescending(b => b.BlogCreateDate).ToList();
+                    }
+                    else 
+                    {
+                        blogList = query.OrderByDescending(b => b.BlogCreateDate).Take(count).ToList();
+                    }
+                }
+                else
+                {
+                    if (count == 0)
+                    {
+                        blogList = query.Where(filter).OrderByDescending(b => b.BlogCreateDate).ToList();
+                    }
+                    else
+                    {
+                        blogList = query.Where(filter).OrderByDescending(b => b.BlogCreateDate).Take(count).ToList();
+                    }
+                }
+                
                 return blogList;
             }
         }
@@ -26,8 +50,16 @@ namespace DataAccessLayer.Concrete.EntityFramework
         {
             using (var context = new BlogDBContext())
             {
-                var blogList = filter == null ? context.Blogs.OrderBy(b => b.BlogCreateDate).Take(count).ToList() : context.Blogs.Where(filter).OrderBy(b => b.BlogCreateDate).Take(count).ToList();
+                var blogList = filter == null ? context.Blogs.OrderByDescending(b => b.BlogCreateDate).Take(count).ToList() : context.Blogs.Where(filter).OrderByDescending(b => b.BlogCreateDate).Take(count).ToList();
                 return blogList;
+            }
+        }
+
+        public int Count(Expression<Func<Blog, bool>> filter = null)
+        {
+            using (var context = new BlogDBContext())
+            {
+                return filter == null ? context.Blogs.Count() : context.Blogs.Where(filter).Count();
             }
         }
     }

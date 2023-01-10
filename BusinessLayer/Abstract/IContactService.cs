@@ -8,12 +8,8 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface IContactService
+    public interface IContactService: IGenericService<Contact>
     {
-        List<Contact> GetAll(Expression<Func<Contact, bool>> filter = null);
-        Contact Get(Expression<Func<Contact, bool>> filter);
-        void Add(Contact contact);
-        void Update(Contact contact);
-        void Delete(Contact contact);
+        
     }
 }

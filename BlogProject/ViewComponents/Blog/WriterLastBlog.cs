@@ -14,8 +14,8 @@ namespace BlogProject.ViewComponents.Blog
         }
         public IViewComponentResult Invoke(int id)
         {
-            int count = 3;
-            var blogs = _blogService.GetListByCount(b=>b.WriterId==id,count);
+           
+            var blogs = _blogService.GetListByCount(b=>b.WriterId==id,3);
             return View(blogs);
         }
     }
