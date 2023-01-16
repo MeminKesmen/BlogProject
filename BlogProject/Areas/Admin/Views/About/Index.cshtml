@@ -1,0 +1,27 @@
+﻿@model About
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h4>Hakkımızda</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                @Html.Label("Hakkımızda Detay");
+                @Html.TextAreaFor(a => a.AboutDetails, 15, 3, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.AboutDetails, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+

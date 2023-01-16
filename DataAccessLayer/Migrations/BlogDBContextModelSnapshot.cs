@@ -30,23 +30,11 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AboutId"));
 
-                    b.Property<string>("AboutDetails1")
+                    b.Property<string>("AboutDetails")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AboutDetails2")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AboutImage1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AboutImage2")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AboutMapLocation")
+                    b.Property<string>("AboutImage")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -79,10 +67,6 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<bool>("BlogStatus")
                         .HasColumnType("bit");
-
-                    b.Property<string>("BlogThumbnailImage")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("BlogTitle")
                         .IsRequired()
@@ -280,39 +264,24 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Messages");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.Notification", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.Role", b =>
                 {
-                    b.Property<int>("NotificationId")
+                    b.Property<int>("RoleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NotificationId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"));
 
-                    b.Property<string>("NotificationColor")
+                    b.Property<string>("RoleName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("NotificationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("NotificationDetails")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("NotificationStatus")
+                    b.Property<bool>("RoleStatus")
                         .HasColumnType("bit");
 
-                    b.Property<string>("NotificationType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("RoleId");
 
-                    b.Property<string>("NotificationTypeSymbol")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("NotificationId");
-
-                    b.ToTable("Notifications");
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Writer", b =>
@@ -349,6 +318,29 @@ namespace DataAccessLayer.Migrations
                     b.HasKey("WriterId");
 
                     b.ToTable("Writers");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.WriterRole", b =>
+                {
+                    b.Property<int>("WriterRoleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WriterRoleId"));
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WriterId")
+                        .HasColumnType("int");
+
+                    b.HasKey("WriterRoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("WriterId");
+
+                    b.ToTable("WriterRoles");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Blog", b =>
@@ -396,6 +388,25 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("SenderWriter");
                 });
 
+            modelBuilder.Entity("EntityLayer.Concrete.WriterRole", b =>
+                {
+                    b.HasOne("EntityLayer.Concrete.Role", "Role")
+                        .WithMany("WriterRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EntityLayer.Concrete.Writer", "Writer")
+                        .WithMany("WriterRoles")
+                        .HasForeignKey("WriterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("Writer");
+                });
+
             modelBuilder.Entity("EntityLayer.Concrete.Blog", b =>
                 {
                     b.Navigation("Comments");
@@ -406,11 +417,18 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("Blogs");
                 });
 
+            modelBuilder.Entity("EntityLayer.Concrete.Role", b =>
+                {
+                    b.Navigation("WriterRoles");
+                });
+
             modelBuilder.Entity("EntityLayer.Concrete.Writer", b =>
                 {
                     b.Navigation("Blogs");
 
                     b.Navigation("WriterReceivers");
+
+                    b.Navigation("WriterRoles");
 
                     b.Navigation("WriterSenders");
                 });

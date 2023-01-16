@@ -11,6 +11,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface ICategoryDal : IEntityRepository<Category>
     {
-        int Count(Expression<Func<Category, bool>> filter = null);
+        
     }
 }

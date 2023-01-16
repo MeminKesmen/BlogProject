@@ -10,11 +10,11 @@ namespace BlogProject.ViewComponents.Category
         ICategoryService _categoryService;
         public CategoryListDashBoard()
         {
-            _categoryService = new CategoryManager(new EfCategoryDal());
+            _categoryService = new CategoryManager(new EfCategoryDal(), new EfBlogDal());
         }
         public IViewComponentResult Invoke()
         {
-            var categoryList = _categoryService.GetAll();
+            var categoryList = _categoryService.GetListWithBlogCount();
             return View(categoryList);
         }
     }

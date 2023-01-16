@@ -1,0 +1,30 @@
+﻿@model IPagedList<MailNewsLetter>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Mail Abonelikler</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Mail</th>
+            <th>Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mail)
+                </td>
+                <td>
+                    <a href="/NewsLetter/DeleteMail/@item.MailId"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

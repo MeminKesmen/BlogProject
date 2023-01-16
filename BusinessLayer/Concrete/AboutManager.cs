@@ -24,6 +24,11 @@ namespace BusinessLayer.Concrete
             _aboutDal.Add(about);
         }
 
+        public int Count(Expression<Func<About, bool>> filter = null)
+        {
+            return _aboutDal.Count(filter);
+        }
+
         public void Delete(About about)
         {
             _aboutDal.Delete(about);

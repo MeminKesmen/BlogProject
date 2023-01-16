@@ -1,0 +1,55 @@
+﻿@model Comment
+
+@{
+    ViewData["Title"] = "CommentDetail";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Yorum Detay</h1>
+<hr />
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CommentUserName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CommentUserName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CommentTitle)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CommentTitle)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CommentContent)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CommentContent)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CommentDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CommentDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.BlogScore)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BlogScore)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CommentStatus)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CommentStatus)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.BlogId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BlogId)
+        </dd>
+    </dl>
+</div>

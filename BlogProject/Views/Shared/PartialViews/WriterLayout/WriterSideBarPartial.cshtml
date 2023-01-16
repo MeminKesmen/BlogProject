@@ -1,0 +1,56 @@
+﻿<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+        @await Component.InvokeAsync("WriterSiderbarProfile")
+        <li class="nav-item">
+            <a class="nav-link" href="/DashBoard/Index">
+                <span class="menu-title">Dashboard</span>
+                <i class="mdi mdi-home menu-icon"></i>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/Writer/WriterEditProfile">
+                <span class="menu-title">Profilim</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Blog/BlogListByWriter">
+                <span class="menu-title">Bloglarım</span>
+                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Blog/BlogAdd">
+                <span class="menu-title">Yeni Blog</span>
+                <i class="mdi mdi-chart-bar menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Message/InBox">
+                <span class="menu-title">Gelen Mesajlar</span>
+                <i class="mdi mdi-message menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Message/SendBox">
+                <span class="menu-title">Gönderilen Mesajlar</span>
+                <i class="mdi mdi-message menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Blog/Index">
+                <span class="menu-title">Siteye Git</span>
+                <i class="mdi mdi-car menu-icon"></i>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/Login/WriterLogOut">
+                <span class="menu-title">Çıkış Yap</span>
+                <i class="mdi mdi-logout-variant menu-icon"></i>
+            </a>
+        </li>
+
+    </ul>
+</nav>

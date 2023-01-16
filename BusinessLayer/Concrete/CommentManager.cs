@@ -24,6 +24,11 @@ namespace BusinessLayer.Concrete
             _commentDal.Add(comment);
         }
 
+        public int Count(Expression<Func<Comment, bool>> filter = null)
+        {
+            return _commentDal.Count(filter);
+        }
+
         public void Delete(Comment comment)
         {
             _commentDal.Delete(comment);

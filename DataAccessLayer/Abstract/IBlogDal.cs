@@ -13,7 +13,7 @@ namespace DataAccessLayer.Abstract
     {
         List<Blog> GetListWithCategory(Expression<Func<Blog, bool>> filter = null, int count = 0);
         List<Blog> GetListByCount(Expression<Func<Blog, bool>> filter = null, int count = 1);
-        int Count(Expression<Func<Blog, bool>> filter = null);
+        
 
     }
 }

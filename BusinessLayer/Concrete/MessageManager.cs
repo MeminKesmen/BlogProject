@@ -22,6 +22,11 @@ namespace BusinessLayer.Concrete
             _messageDal.Add(entity);
         }
 
+        public int Count(Expression<Func<Message, bool>> filter = null)
+        {
+            return _messageDal.Count(filter);
+        }
+
         public void Delete(Message entity)
         {
             _messageDal.Delete(entity);
@@ -37,9 +42,19 @@ namespace BusinessLayer.Concrete
             return _messageDal.GetAll(filter);
         }
 
-        public List<Message> GetListWithWriter(Expression<Func<Message, bool>> filter = null)
+        public List<Message> GetListWithReceiver(Expression<Func<Message, bool>> filter = null)
         {
-            return _messageDal.GetListWithWriter(filter);
+            return _messageDal.GetListWithReceiver(filter);
+        }
+
+        public List<Message> GetListWithSender(Expression<Func<Message, bool>> filter = null)
+        {
+            return _messageDal.GetListWithSender(filter);
+        }
+
+        public Message GetWithSenderAndReceiver(Expression<Func<Message, bool>> filter)
+        {
+            return _messageDal.GetWithSenderAndReceiver(filter);
         }
 
         public void Update(Message entity)

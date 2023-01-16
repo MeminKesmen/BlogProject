@@ -12,6 +12,7 @@
         <th>Gönderen</th>
         <th>Tarih</th>
         <th>Mesajı Aç</th>
+        <th>Sil</th>
     </tr>
     @foreach (var item in Model)
     {
@@ -21,8 +22,9 @@
             <td>@item.SenderWriter.WriterName</td>
             <td>@(((DateTime)item.MessageDate).ToString("dd-MMM-yyyy"))</td>
             <td><a href="/Message/MessageDetails/@item.MessageId" class="btn btn-info">Mesajı Aç</a></td>
+            <td><a href="/Message/DeleteMessage/@item.MessageId" class="btn btn-danger">Sil</a></td>
         </tr>
     }
 </table>
-<a href="/Message/" class="btn btn-primary">Yeni Mesaj Oluştur</a>
+<a href="/Message/SendMessage" class="btn btn-primary">Yeni Mesaj Oluştur</a>
 

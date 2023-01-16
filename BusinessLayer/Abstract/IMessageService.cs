@@ -10,6 +10,8 @@ namespace BusinessLayer.Abstract
 {
     public interface IMessageService:IGenericService<Message>
     {
-        List<Message> GetListWithWriter(Expression<Func<Message, bool>> filter = null);
+        List<Message> GetListWithSender(Expression<Func<Message, bool>> filter = null);
+        List<Message> GetListWithReceiver(Expression<Func<Message, bool>> filter = null);
+        Message GetWithSenderAndReceiver(Expression<Func<Message, bool>> filter);
     }
 }

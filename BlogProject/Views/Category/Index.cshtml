@@ -1,0 +1,36 @@
+﻿@model List<CategoryWithBlogCount>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+<section class="main-content-w3layouts-agileits">
+    <div class="container">
+        <h3 class="tittle">Kategoriler</h3>
+        <div class="inner-sec">
+            <!--left-->
+            <div class="left-blog-info-w3layouts-agileits text-left">
+                <div class="row">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Kategori</th>
+                            <th>Blog Sayısı</th>
+                            <th></th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.CategoryName</td>
+                                <td>@item.BlogCount</td>
+                                <td><a href="/Blog/Index/@item.CategoryId" class="btn btn-success">Blogları Gör</a></td>
+                            </tr>
+                        }
+
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+

@@ -14,7 +14,7 @@ namespace BlogProject.ViewComponents.Comment
         }
         public IViewComponentResult Invoke(int id)
         {
-            var comments = _commentService.GetAll(c => c.BlogId == id);
+            var comments = _commentService.GetAll(c => c.BlogId == id&&c.CommentStatus==true);
             return View(comments);
         }
     }

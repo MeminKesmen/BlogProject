@@ -1,11 +1,20 @@
-﻿<div class="comment-top">
+﻿@model Blog
+<div class="comment-top">
     <h4>Yorum Yap</h4>
     <div class="comment-bottom">
         <form action="/comment/PartialAddComment" method="post">
+            <input type="hidden" name="BlogId" value="@Model.BlogId" />
             <input class="form-control" type="text" name="CommentUserName" placeholder="Adınız soyadınız" required="">
             <input class="form-control" type="text" name="CommentTitle" placeholder="Konu" required="">
             <textarea class="form-control" name="CommentContent" placeholder="Yorumunuz" required=""></textarea>
+            @Html.DropDownList("BlogScore", new List<SelectListItem>
+            {new SelectListItem {Text="1",Value="1" },
+             new SelectListItem {Text="2",Value="2" },
+             new SelectListItem {Text="3",Value="3" },
+             new SelectListItem {Text="4",Value="4" },
+             new SelectListItem {Text="5",Value="5" }
+             },new { @class = "form-control" })
             <button type="submit" class="btn btn-primary submit">Submit</button>
         </form>
     </div>
-</div>
+</div> 

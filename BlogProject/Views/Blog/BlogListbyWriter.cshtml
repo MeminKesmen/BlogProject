@@ -12,6 +12,7 @@
         <th>Oluşturma Tarihi</th> 
         <th>Kategori</th> 
         <th>Durum</th> 
+        @*<th>Puan</th>*@
         <th>Sil</th> 
         <th>Düzenle</th> 
     </tr>
@@ -22,9 +23,20 @@
             <td>@item.BlogTitle</td>
             <td>@item.BlogCreateDate</td>
             <td>@item.Category.CategoryName</td>
-            <td>@item.BlogStatus</td>
+            <td>
+                @if (@item.BlogStatus)
+                {
+                    <a href="/Blog/BlogActivate/@item.BlogId" class="btn btn-danger">Pasif Yap</a>
+                }
+                else 
+                { 
+            <a href="/Blog/BlogActivate/@item.BlogId" class="btn btn-warning">Aktif Yap</a>
+                }
+
+
+            </td>
             <td><a href="/Blog/BlogDelete/@item.BlogId" class="btn btn-danger">Sil</a></td>
-            <td><a href="/Blog/BlogEdit/@item.BlogId" class="btn btn-warning">Düzenle</a></td>
+            <td><a href="/Blog/BlogEdit/@item.BlogId" class="btn btn-info">Düzenle</a></td>
             
         </tr>
     }

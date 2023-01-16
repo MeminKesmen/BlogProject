@@ -22,9 +22,14 @@ namespace BusinessLayer.Concrete
             _mailNewsLetterDal.Add(mailNewsLetter);
         }
 
+        public int Count(Expression<Func<MailNewsLetter, bool>> filter = null)
+        {
+            return _mailNewsLetterDal.Count(filter);
+        }
+
         public void Delete(MailNewsLetter entity)
         {
-            throw new NotImplementedException();
+            _mailNewsLetterDal.Delete(entity);
         }
 
         public MailNewsLetter Get(Expression<Func<MailNewsLetter, bool>> filter)
@@ -34,7 +39,7 @@ namespace BusinessLayer.Concrete
 
         public List<MailNewsLetter> GetAll(Expression<Func<MailNewsLetter, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            return _mailNewsLetterDal.GetAll(filter);
         }
 
         public void Update(MailNewsLetter entity)

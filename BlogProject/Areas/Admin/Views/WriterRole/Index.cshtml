@@ -1,0 +1,38 @@
+﻿@model IPagedList<Writer>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Yazar Rolleri</h1>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                İsim
+            </th>
+            <th>
+                Mail
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WriterName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.WriterMail)
+                </td>
+                <td>
+                    <a href="/Admin/WriterRole/Role/@item.WriterId" class="btn btn-info">Düzenle</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

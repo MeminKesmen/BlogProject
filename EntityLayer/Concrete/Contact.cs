@@ -16,7 +16,7 @@ namespace EntityLayer.Concrete
         public string ContactMail { get; set; }
         public string ContactSubject { get; set; }
         public string ContactMessage { get; set; }
-        public DateTime ContactDate { get; set; }
-        public bool ContactStatus { get; set; }
+        public DateTime ContactDate { get; set; } = DateTime.Now;
+        public bool ContactStatus { get; set; } = false;
     }
 }

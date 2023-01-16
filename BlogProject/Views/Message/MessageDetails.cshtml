@@ -6,9 +6,15 @@
 
 <h1>Mesaj Detay</h1>
 <br />
+@Html.Label("Gönderen Mail")
+@Html.TextBoxFor(m => m.SenderWriter.WriterMail, new { @class = "form-control", @readonly = "readonly " })
+<br />
+@Html.Label("Alıcı Mail")
+@Html.TextBoxFor(m => m.ReceiverWriter.WriterMail, new { @class = "form-control", @readonly = "readonly " })
+<br />
 @Html.Label("Mesaj Başlık")
-@Html.LabelFor(m => m.Subject, new { @class = "form-control" })
+@Html.TextBoxFor(m => m.Subject, new { @class = "form-control", @readonly = "readonly " })
 <br />
 @Html.Label("Mesaj İçerik")
-@Html.TextAreaFor(m => m.MessageDetails, new { @class = "form-control",@readonly= "readonly " })
+@Html.TextAreaFor(m => m.MessageDetails, new { @class = "form-control", @readonly = "readonly " })
 

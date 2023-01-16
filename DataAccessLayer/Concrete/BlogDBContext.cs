@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Concrete
 {
-    public class BlogDBContext:DbContext
+    public class BlogDBContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -26,6 +26,11 @@ namespace DataAccessLayer.Concrete
                 .WithMany(w => w.WriterReceivers)
                 .HasForeignKey(f => f.ReceiverId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+            modelBuilder.Entity<Blog>()
+                .ToTable(tb => tb.HasTrigger("AddBlogInRatingTable"));
+            modelBuilder.Entity<Comment>()
+                .ToTable(tb => tb.HasTrigger("AddScoreInComment"));
+
         }
         public DbSet<About> Abouts { get; set; }
         public DbSet<Blog> Blogs { get; set; }
@@ -35,7 +40,9 @@ namespace DataAccessLayer.Concrete
         public DbSet<Writer> Writers { get; set; }
         public DbSet<MailNewsLetter> MailNewsLetters { get; set; }
         public DbSet<BlogRating> BlogRatings { get; set; }
-        public DbSet<Notification> Notifications { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<WriterRole> WriterRoles { get; set; }
+
     }
 }

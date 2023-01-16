@@ -71,8 +71,29 @@ namespace CoreLayer.DataAccess.EntityFramework
 
                 context.SaveChanges();
             }
-
+        }
+        public int Count(Expression<Func<TEntity, bool>> filter=null)
+        {
+            using (TContext context = new TContext())
+            {
+                return filter == null
+                 ? context.Set<TEntity>().Count()
+                 : context.Set<TEntity>().Where(filter).Count();
+            }
 
         }
+        //public List<TEntity> GetAllWithInclude(Expression<Func<TEntity, bool>> filter = null,params Expression<Func<TEntity, object>>[] includes)
+        //{
+        //    using (TContext context = new TContext())
+        //    {
+        //        var query = filter == null ? context.Set<TEntity>() : context.Set<TEntity>().Where(filter);
+        //        foreach (var item in includes)
+        //        {
+        //            query = query.Include(item);
+        //        }
+        //        return query.ToList();
+        //    }
+
+        //}
     }
 }

@@ -1,0 +1,44 @@
+﻿@model IPagedList<Contact>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>İsim</th>
+            <th>Mail</th>
+            <th>Konu</th>
+            <th>Tarih</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactUserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactMail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactSubject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactDate)
+                </td>
+                <td>
+                    <a href="/Contact/ContactDetails/@item.ContactId" class="btn btn-info">Oku</a> |
+                    <a href="/Contact/ContactDelete/@item.ContactId" class="btn btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))

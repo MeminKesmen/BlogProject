@@ -1,40 +1,45 @@
 ﻿using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
+using BusinessLayer.ViewModels;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogProject.Controllers
 {
+    [AllowAnonymous]
     public class CommentController : Controller
     {
-        ICommentService _commentService;
+       private ICommentService _commentService;
 
-        public CommentController()
+        public CommentController(ICommentService commentService)
         {
-            _commentService = new CommentManager(new EfCommentDal());
+            _commentService = commentService;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
         public PartialViewResult PartialAddComment()
         {
             return PartialView();
         }
         [HttpPost]
-        public PartialViewResult PartialAddComment(Comment comment)
+        public IActionResult PartialAddComment(CommentRequestViewModel comment)
         {
-            comment.CommentDate = DateTime.Now;
-            comment.CommentStatus = true;
-            comment.BlogId = 1;
-            _commentService.Add(comment);
-            return PartialView();
+            if (!ModelState.IsValid) { return RedirectToAction("BlogReadAll", "Blog", new { id = comment.BlogId }); }
+
+            _commentService.Add(new Comment
+            {
+                CommentUserName = comment.CommentUserName,
+                CommentTitle = comment.CommentTitle,
+                CommentContent = comment.CommentContent,
+                BlogScore = comment.BlogScore,
+                BlogId = comment.BlogId
+            });
+            return RedirectToAction("BlogReadAll", "Blog", new { id = comment.BlogId });
         }
         public PartialViewResult CommentListByBlog(int id)
         {
-            var comments = _commentService.GetAll(c=>c.BlogId==id);
+            var comments = _commentService.GetAll(c => c.BlogId == id);
             return PartialView(comments);
         }
     }

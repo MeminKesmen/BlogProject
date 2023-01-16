@@ -24,6 +24,11 @@ namespace BusinessLayer.Concrete
             _contactDal.Add(contact);
         }
 
+        public int Count(Expression<Func<Contact, bool>> filter = null)
+        {
+            return _contactDal.Count(filter);
+        }
+
         public void Delete(Contact contact)
         {
             _contactDal.Delete(contact);

@@ -1,4 +1,4 @@
-﻿@model Blog
+﻿@model BlogCreateViewModel
 @{
     ViewData["Title"] = "BlogAdd";
     Layout = "~/Views/Shared/WriterLayout.cshtml";
@@ -6,25 +6,20 @@
 
 <h1>Yeni Blog</h1>
 
-@using (Html.BeginForm("BlogAdd", "Blog", FormMethod.Post))
+@using (Html.BeginForm("BlogAdd", "Blog", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.Label("Blog Başlığı");
     @Html.TextBoxFor(b => b.BlogTitle, new { @class = "form-control" })
     @Html.ValidationMessageFor(b => b.BlogTitle)
     <br />
     @Html.Label("Blog Resmi");
-    @Html.TextBoxFor(b => b.BlogImage, new { @class = "form-control" })
-    @Html.ValidationMessageFor(b => b.BlogImage)
-    <br />
-    @Html.Label("Blog Küçük Resmi");
-    @Html.TextBoxFor(b => b.BlogThumbnailImage, new { @class = "form-control" })
-    @Html.ValidationMessageFor(b => b.BlogThumbnailImage)
+    <input class="form-control" type="file" asp-for="BlogImage" />
     <br />
     @Html.Label("Kategori");
-    @Html.DropDownListFor(b => b.CategoryId, (List<SelectListItem>)ViewBag.Categories, new {@class="form-control" })
+    @Html.DropDownListFor(b => b.CategoryId, (List<SelectListItem>)ViewBag.Categories, new { @class = "form-control" })
     <br />
     @Html.Label("Blog İçerik");
-    @Html.TextAreaFor(b => b.BlogContent,15,3, new { @class = "form-control" })
+    @Html.TextAreaFor(b => b.BlogContent, 15, 3, new { @class = "form-control" })
     @Html.ValidationMessageFor(b => b.BlogContent)
     <button class="btn btn-info">Kaydet</button>
 

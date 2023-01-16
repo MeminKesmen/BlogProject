@@ -2,25 +2,27 @@
 using BusinessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogProject.Controllers
 {
+    [AllowAnonymous]
     public class NewLetterController : Controller
     {
         private IMailNewsLetterService _mailNewsLetterService;
-        public NewLetterController()
+        public NewLetterController(IMailNewsLetterService mailNewsLetterService)
         {
-            _mailNewsLetterService = new MailNewsLetterManager(new EfMailNewsLetterDal());
+            _mailNewsLetterService = mailNewsLetterService;
         }
         public PartialViewResult SubscribeMail()
         {
             return PartialView();
         }
         [HttpPost]
-        public PartialViewResult SubscribeMail(MailNewsLetter mailNewsLetter)
+        public IActionResult SubscribeMail(MailNewsLetter mailNewsLetter)
         {
-            mailNewsLetter.MailStatus = true;
+            if (!ModelState.IsValid) { return RedirectToAction("BlogReadAll", "Blog"); }
             _mailNewsLetterService.Add(mailNewsLetter);
             return PartialView();
         }

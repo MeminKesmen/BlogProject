@@ -11,6 +11,8 @@ namespace DataAccessLayer.Abstract
 {
     public interface IMessageDal : IEntityRepository<Message>
     {
-        List<Message> GetListWithWriter(Expression<Func<Message,bool>> filter=null);
+        List<Message> GetListWithSender(Expression<Func<Message,bool>> filter=null);
+        List<Message> GetListWithReceiver(Expression<Func<Message, bool>> filter = null);
+        Message GetWithSenderAndReceiver(Expression<Func<Message, bool>> filter);
     }
 }

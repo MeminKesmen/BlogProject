@@ -1,0 +1,43 @@
+﻿@model IPagedList<Comment>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Yorumlar</h1>
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>Ad Soyad</th>
+        <th>Başlık</th>
+        <th>Tarih</th>
+        <th>İşlem</th>
+        <th>Sil</th>
+        <th>İncele</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.CommentUserName</td>
+            <td>@item.CommentTitle</td>
+            <td>@item.CommentDate</td>
+            <td>
+                @if (item.CommentStatus)
+                {
+                    <a href="/Admin/Comment/CommentActivate/@item.CommentId" class="btn btn-danger">Pasif Yap</a>
+                }
+                else
+                {
+                    <a href="/Admin/Comment/CommentActivate/@item.CommentId" class="btn btn-warning">Aktif Yap</a>
+                }
+            </td>
+            <td><a href="/Admin/Comment/CommentDelete/@item.CommentId&page=@ViewContext.HttpContext.Request.Query["page"]" class="btn btn-info">Sil</a></td>
+            <td><a href="/Admin/Comment/CommentDetail/@item.CommentId" class="btn btn-info">İncele</a></td>
+        </tr>
+    }
+</table>
+<br />
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
+

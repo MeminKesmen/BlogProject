@@ -16,8 +16,8 @@ namespace EntityLayer.Concrete
         public int? ReceiverId { get; set; }
         public string Subject { get; set; }
         public string MessageDetails { get; set; }
-        public DateTime MessageDate { get; set; }
-        public bool MessageStatus { get; set; }
+        public DateTime MessageDate { get; set; } = DateTime.Now;
+        public bool MessageStatus { get; set; } = false;
         public Writer SenderWriter { get; set; }
         public Writer ReceiverWriter { get; set; }
     }

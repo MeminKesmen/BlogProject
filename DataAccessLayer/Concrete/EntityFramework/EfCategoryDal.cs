@@ -12,12 +12,6 @@ namespace DataAccessLayer.Concrete.EntityFramework
 {
     public class EfCategoryDal : EfEntityRepositoryBase<Category, BlogDBContext>, ICategoryDal
     {
-        public int Count(Expression<Func<Category, bool>> filter = null)
-        {
-            using (var context = new BlogDBContext())
-            {
-                return filter == null ? context.Categories.Count() : context.Categories.Where(filter).Count();
-            }
-        }
+        
     }
 }

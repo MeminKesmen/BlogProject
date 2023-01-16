@@ -1,4 +1,5 @@
-﻿using EntityLayer.Concrete;
+﻿using BusinessLayer.ViewModels;
+using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,6 @@ namespace BusinessLayer.Abstract
 {
     public interface ICategoryService: IGenericService<Category>
     {
-        int Count(Expression<Func<Category, bool>> filter = null);
+        List<CategoryWithBlogCount> GetListWithBlogCount();
     }
 }

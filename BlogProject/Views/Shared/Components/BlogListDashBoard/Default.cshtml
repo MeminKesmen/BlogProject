@@ -3,12 +3,12 @@
     <div class="col-12 grid-margin">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Son Bloglar</h4>
+                <h4 class="card-title">Siteye Eklenen Son 5 blog</h4>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th> # </th>
+                                <th> Resim </th>
                                 <th> Başlık </th>
                                 <th> Kategori </th>
                                 <th> Tarih </th>
@@ -27,7 +27,7 @@
                                         <label class="badge badge-gradient-success">@item.Category.CategoryName</label>
                                     </td>
                                     <td> @(((DateTime)item.BlogCreateDate).ToString("dd-MMM-yyyy")) </td>
-                                    <td> <a href="/Blog/BlogReadAll/@item.BlogId" class="btn btn-dark" ></a> </td>
+                                    <td> <a href="/Blog/BlogReadAll/@item.BlogId" class="btn btn-dark" >Oku</a> </td>
                                 </tr>
                             }
 

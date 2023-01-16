@@ -2,16 +2,18 @@
 using BusinessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogProject.Controllers
 {
+    [AllowAnonymous]
     public class ContactController : Controller
     {
         private IContactService _contactService;
-        public ContactController()
+        public ContactController(IContactService contactService)
         {
-            _contactService = new ContactManager(new EfContactDal());
+            _contactService = contactService;
         }
         public IActionResult Index()
         {
@@ -20,10 +22,9 @@ namespace BlogProject.Controllers
         [HttpPost]
         public IActionResult Index(Contact contact)
         {
-            contact.ContactDate = DateTime.Now;
-            contact.ContactStatus = true;
+            if (!ModelState.IsValid) { return View(); }
             _contactService.Add(contact);
-            return RedirectToAction("Index","Blog");
+            return RedirectToAction("Index", "Blog");
         }
     }
 }

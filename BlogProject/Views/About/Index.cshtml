@@ -23,16 +23,13 @@
 
                         <div class="blog_info_left_grid">
                             <a href="single.html">
-                                <img src="images/b5.jpg" class="img-fluid" alt="">
+                                <img src="@Model.AboutImage" class="img-fluid" alt="">
                             </a>
                         </div>
-                        <h3>
-                            Hakkımda
-                        </h3>
                         <p>
-                           @Model.AboutDetails1
+                            @Model.AboutDetails
                         </p>
-                        <a href="single.html" class="btn btn-primary read-m">Read More</a>
+
                     </div>
 
                 </div>
@@ -44,12 +41,12 @@
                             <img src="~/Theme/images/banner1.jpg" class="img-fluid" alt="">
                         </div>
                         @await Html.PartialAsync("~/Views/NewLetter/SubscribeMail.cshtml")
-                        
-                        
-                    <div class="tech-btm">
-                        <h4>Son Postlar</h4>
-                        @await Component.InvokeAsync("WriterLastBlog", new { id = 1 })
-                    </div>
+
+
+                        <div class="tech-btm">
+                            <h4>Son Postlar</h4>
+                            @await Component.InvokeAsync("LastPosts")
+                        </div>
                     </div>
 
                 </aside>

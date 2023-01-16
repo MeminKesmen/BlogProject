@@ -1,4 +1,4 @@
-﻿@model List<Blog>
+﻿@model IPagedList<Blog>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/UserLayout.cshtml";
@@ -14,7 +14,7 @@
                     {
                         <div class="col-lg-4 card">
                             <a href="/Blog/BlogReadAll/@item.BlogId">
-                                <img src="@item.BlogThumbnailImage" class="card-img-top img-fluid" alt="">
+                                <img src="@item.BlogImage" class="card-img-top img-fluid" alt="Resim Bulunamadı">
                             </a>
                             <div class="card-body">
                                 <ul class="blog-icons my-4">

@@ -1,9 +1,24 @@
 ﻿<div class="tech-btm">
-    
-    
-    <form action="/NewLetter/SubscribeMail" method="post">
-        <input type="email" placeholder="Email" required="" name="Mail">
-        <input type="submit" value="Subscribe">
-    </form>
+
+    <div>
+        <input type="email" id="Mail" placeholder="Email" required="" name="Mail">
+        <input type="submit" id="btn" value="Abone Ol!">
+    </div>
+    @*<form action="/NewLetter/SubscribeMail" method="post">
+        <input type="email" id="Mail" placeholder="Email" required="" name="Mail">
+        <input type="submit" id="btn" value="Subscribe">
+    </form>*@
 
 </div>
+<script type="text/javascript">
+
+    $("#btn").click(function () {
+        let value = { Mail: $("#Mail").val() }
+        $.ajax({
+            type: "POST",
+            url: "/NewLetter/SubscribeMail",
+            data: value,
+            success: function () { }
+        })
+    })
+</script>

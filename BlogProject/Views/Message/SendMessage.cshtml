@@ -1,0 +1,25 @@
+﻿@model MessageRequest
+@{
+    ViewData["Title"] = "SendMessage";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<h1>Yeni Mesaj</h1>
+@using (Html.BeginForm("SendMessage", "Message", FormMethod.Post))
+{
+    @Html.Label("Alıcı Mail");
+    @Html.TextBoxFor(m => m.ReceiverMail, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.ReceiverMail)
+    <br />
+    @Html.Label("Mesaj Başlık");
+    @Html.TextBoxFor(m=>m.Subject, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Subject)
+    <br />
+    @Html.Label("Mesaj");
+    @Html.TextAreaFor(m=>m.MessageDetails, 10, 3, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.MessageDetails)
+    <br />
+    <button class="btn btn-info">Gönder</button>
+
+
+}

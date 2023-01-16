@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Abstract;
+using BusinessLayer.ViewModels;
 using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
 using System;
@@ -13,10 +14,11 @@ namespace BusinessLayer.Concrete
     public class CategoryManager : ICategoryService
     {
         ICategoryDal _categoryDal;
-
-        public CategoryManager(ICategoryDal categoryDal)
+        IBlogDal _blogDal;
+        public CategoryManager(ICategoryDal categoryDal, IBlogDal blogDal)
         {
             _categoryDal = categoryDal;
+            _blogDal = blogDal;
         }
 
         public void Add(Category category)
@@ -44,9 +46,26 @@ namespace BusinessLayer.Concrete
             return _categoryDal.GetAll(filter);
         }
 
+        public List<CategoryWithBlogCount> GetListWithBlogCount()
+        {
+            var categories = GetAll();
+            List<CategoryWithBlogCount> categoriList = new List<CategoryWithBlogCount>();
+            foreach (var item in categories)
+            {
+                categoriList.Add(new CategoryWithBlogCount
+                {
+                    CategoryId = item.CategoryId,
+                    CategoryName = item.CategoryName,
+                    BlogCount = _blogDal.Count(b => b.CategoryId == item.CategoryId)
+                }); ;
+            }
+            return categoriList;
+        }
+
         public void Update(Category category)
         {
             _categoryDal.Update(category);
         }
+        
     }
 }

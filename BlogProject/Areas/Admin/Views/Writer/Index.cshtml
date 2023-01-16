@@ -1,0 +1,49 @@
+﻿@model IPagedList<WriterListWithBlogCount>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Yazarlar</h1>
+
+<table class="table table-bordered text-center">
+    <thead>
+        <tr>
+
+            <th>
+              Yazar Resim
+            </th>
+            <th>
+               Yazar İsim
+            </th>
+            <th>
+                Blog Sayısı 
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    <img src="@item.WriterImage" alt="Resim Bulunamadı" width="30px" height="30px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WriterName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.BlogCount)
+                </td>
+                <td>
+                    <a href="/Admin/Writer/WriterDelete/@item.WriterId" class="btn btn-danger">Sil</a> |
+                    <a href="/Blog/Index?writerId=@item.WriterId" class="btn btn-info">Bloglar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))

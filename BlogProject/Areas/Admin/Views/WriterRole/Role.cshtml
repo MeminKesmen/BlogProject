@@ -1,0 +1,44 @@
+﻿@model Writer
+
+@{
+    ViewData["Title"] = "Role";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<h4>Yazar-Rol</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Role">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input hidden="hidden" asp-for="WriterId" class="form-control" />
+                <span asp-validation-for="WriterId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="WriterName" class="form-control" readonly="readonly" />
+                <span asp-validation-for="WriterName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="WriterMail" class="form-control" readonly="readonly" />
+                <span asp-validation-for="WriterMail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @Html.Label("Sahip Olduğu Roller");
+                @Html.DropDownList("deleteRole", (List<SelectListItem>)ViewBag.InRole, new { @class = "form-control" })
+                
+            </div>
+            <div class="form-group">
+                @Html.Label("Verilebilecek Roller");
+                @Html.DropDownList("addRole", (List<SelectListItem>)ViewBag.OutRole, new { @class = "form-control" })
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+

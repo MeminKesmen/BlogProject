@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "RoleAdd";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Rol Ekle</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="RoleAdd">
+            <div class="form-group">
+                <label class="control-label">Role İsim</label>
+                <input name="name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Ekle" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+

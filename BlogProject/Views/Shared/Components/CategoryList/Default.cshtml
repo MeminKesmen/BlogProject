@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Category>
+﻿@model IEnumerable<CategoryWithBlogCount>
 <div class="tech-btm">
     <h4>Kategoriler</h4>
     <ul class="list-group single">
@@ -6,7 +6,7 @@
         {
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 @item.CategoryName
-                <span class="badge badge-primary badge-pill">0</span>
+                <span class="badge badge-primary badge-pill">@item.BlogCount</span>
             </li>
         }
 
