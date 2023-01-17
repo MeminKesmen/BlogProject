@@ -1,6 +1,6 @@
 ﻿@model Writer
 <li class="nav-item nav-profile">
-    <a href="@(Model.WriterRoles.Any(r=>r.Role.RoleName=="Admin")?"/Admin/Dashboard":"/Dasboard")" class="nav-link">
+    <a href="@(Model.WriterRoles.Any(r=>r.Role.RoleName=="Admin")?"/Admin/Dashboard":"/Dashboard")" class="nav-link">
         <div class="nav-profile-image">
             <img src="@Model.WriterImage" alt="profile">
             <span class="login-status online"></span>

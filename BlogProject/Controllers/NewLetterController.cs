@@ -24,7 +24,7 @@ namespace BlogProject.Controllers
         {
             if (!ModelState.IsValid) { return RedirectToAction("BlogReadAll", "Blog"); }
             _mailNewsLetterService.Add(mailNewsLetter);
-            return PartialView();
+            return Ok();
         }
     }
 }

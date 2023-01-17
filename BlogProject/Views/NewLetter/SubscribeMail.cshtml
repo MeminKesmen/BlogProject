@@ -2,17 +2,21 @@
 
     <div>
         <input type="email" id="Mail" placeholder="Email" required="" name="Mail">
-        <input type="submit" id="btn" value="Abone Ol!">
+        <input type="button" class="btn btn-success" id="btn" value="Abone Ol!">
     </div>
     @*<form action="/NewLetter/SubscribeMail" method="post">
-        <input type="email" id="Mail" placeholder="Email" required="" name="Mail">
-        <input type="submit" id="btn" value="Subscribe">
-    </form>*@
+            <input type="email" id="Mail" placeholder="Email" required="" name="Mail">
+            <input type="submit" id="btn" value="Subscribe">
+        </form>*@
 
 </div>
-<script type="text/javascript">
 
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript">
+    
     $("#btn").click(function () {
+       
         let value = { Mail: $("#Mail").val() }
         $.ajax({
             type: "POST",

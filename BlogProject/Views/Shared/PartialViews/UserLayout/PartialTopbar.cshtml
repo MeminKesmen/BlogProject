@@ -1,4 +1,5 @@
-﻿<div class="top-bar_sub_w3layouts container-fluid">
+﻿@using System.Security.Claims;
+<div class="top-bar_sub_w3layouts container-fluid">
     <div class="row">
         <div class="col-md-4 logo text-left">
             <a class="navbar-brand" href="/Blog/Index">
@@ -6,17 +7,33 @@
             </a>
         </div>
         <div class="col-md-4 top-forms text-center mt-lg-3 mt-md-1 mt-0">
-            <span>Hoşgeldin .........</span>
-            <span class="mx-lg-4 mx-md-2  mx-1">
-                <a href="/Account/Login">
-                    <i class="fas fa-lock"></i> Giriş Yap
-                </a>
-            </span>
-            <span>
-                <a href="/Account/Register">
-                    <i class="far fa-user"></i> Kayıt Ol!
-                </a>
-            </span>
+            @if ((User.Identity.IsAuthenticated))
+            {
+
+                <span class="mx-lg-4 mx-md-2  mx-1">
+                    @(User.Claims.FirstOrDefault(c=>c.Type== ClaimTypes.Name).Value)
+                </span>
+                <span>
+                    <a href="/Account/LogOut">
+                        <i class="far fa-user"></i> Çıkış Yap
+                    </a>
+                </span>
+            }
+            else
+            {
+                <span class="mx-lg-4 mx-md-2  mx-1">
+                    <a href="/Account/Login">
+                        <i class="fas fa-lock"></i> Giriş Yap
+                    </a>
+                </span>
+                <span>
+                    <a href="/Account/Register">
+                        <i class="far fa-user"></i> Kayıt Ol!
+                    </a>
+                </span>
+            }
+
+
         </div>
         <div class="col-md-4 log-icons text-right">
 

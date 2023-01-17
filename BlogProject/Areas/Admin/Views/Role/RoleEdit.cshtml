@@ -1,0 +1,29 @@
+﻿@model Role
+
+@{
+    ViewData["Title"] = "RoleEdit";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Role Güncelle</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="RoleEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input hidden="hidden" asp-for="RoleId" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Role İsim</label>
+                <input asp-for="RoleName" class="form-control" />
+                <span asp-validation-for="RoleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+

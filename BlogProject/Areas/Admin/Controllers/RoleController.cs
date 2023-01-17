@@ -28,7 +28,11 @@ namespace BlogProject.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult RoleAdd(string name)
         {
-            if (string.IsNullOrWhiteSpace(name)) { return View(); }
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                ModelState.AddModelError("RoleName", "Boş Geçilemez");
+                return View();
+            }
             _roleService.Add(new Role { RoleName = name });
             return View();
         }
@@ -48,7 +52,11 @@ namespace BlogProject.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult RoleEdit(Role role)
         {
-            if (string.IsNullOrWhiteSpace(role.RoleName)) { return View(role); }
+            if (string.IsNullOrWhiteSpace(role.RoleName))
+            {
+                ModelState.AddModelError("RoleName", "Boş Geçilemez");
+                return View(role);
+            }
             var findRole = _roleService.Get(r => r.RoleId == role.RoleId);
             if (findRole != null)
             {
